@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_CONFIG } from '../config';
+---
+<Layout title="ホーム" description={SITE_CONFIG.description}>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-tag">埼玉県北葛飾郡 杉戸町</p>
+      <h1 class="hero-title">杉戸町の公園・<br />お出かけスポット<br />まとめ</h1>
+      <p class="hero-sub">子連れでも安心。杉戸町の公園やお出かけ先をまとめました。</p>
+      <div class="hero-actions">
+        <a href="/parks/" class="btn-primary">公園一覧を見る</a>
+        <a href="/family/" class="btn-outline">子連れスポットを見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="intro-inner">
+      <p>
+        杉戸町は古利根川の流れと豊かな緑に恵まれた、のんびりと過ごせる町です。
+        広い芝生のある公園や住宅地の身近な遊び場、子育て世代に役立つ施設まで、
+        家族みんなで楽しめるスポットが点在しています。
+        このサイトでは、町内とその周辺のお出かけ先を分かりやすくまとめました。
+      </p>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-inner">
+      <a class="feature-card" href="/parks/">
+        <div class="feature-icon">🌳</div>
+        <h3>公園一覧</h3>
+        <p>みどり公園や大塚公園など、町内の公園と遊歩道をまとめています。遊具や広場の情報も。</p>
+        <span class="feature-link">詳しく見る →</span>
+      </a>
+      <a class="feature-card" href="/family/">
+        <div class="feature-icon">👨‍👩‍👧</div>
+        <h3>子連れスポット</h3>
+        <p>東武動物公園や子育て支援センター、図書館など、お子さま連れで楽しめる場所を紹介します。</p>
+        <span class="feature-link">詳しく見る →</span>
+      </a>
+      <a class="feature-card" href="/outing/">
+        <div class="feature-icon">🚗</div>
+        <h3>お出かけガイド</h3>
+        <p>季節ごとのおすすめや、杉戸町から行きやすい近隣スポット、移動手段のヒントをまとめました。</p>
+        <span class="feature-link">詳しく見る →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="disclaimer-section">
+    <div class="disclaimer-inner">
+      <p>
+        ※ 掲載している情報は一般に公開されている内容をもとにまとめたものです。
+        遊具・施設の状況や開園状況は変わることがあります。お出かけ前に各施設や杉戸町公式サイトの最新情報をご確認ください。
+      </p>
+      <p class="last-updated">最終更新: {SITE_CONFIG.lastUpdated}</p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .hero {
+    padding: 10rem 1.5rem 5rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
+    color: white; text-align: center;
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; }
+  .hero-tag { font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1.5rem; opacity: 0.85; }
+  .hero-title { font-size: 2.4rem; font-weight: 700; line-height: 1.35; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 0.95rem; line-height: 1.8; opacity: 0.9; margin-bottom: 2.5rem; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; padding: 0.9rem 2rem; background: white; color: #1e3a5f;
+    font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-outline {
+    display: inline-block; padding: 0.9rem 2rem; border: 1px solid rgba(255,255,255,0.7);
+    color: white; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); }
+
+  .intro { padding: 4rem 1.5rem; background: var(--color-bg); }
+  .intro-inner { max-width: 720px; margin: 0 auto; }
+  .intro-inner p { font-size: 0.95rem; line-height: 2; color: var(--color-text); }
+
+  .features { padding: 4rem 1.5rem 5rem; background: #f0f9ff; }
+  .features-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;
+  }
+  .feature-card {
+    display: block; padding: 2.5rem 2rem; border: 1px solid #cfe8f7; background: #ffffff;
+    text-align: center; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(14,165,233,0.15); }
+  .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .feature-card h3 { font-size: 1.15rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.8rem; }
+  .feature-card p { font-size: 0.9rem; color: var(--color-sub); line-height: 1.8; margin-bottom: 1rem; }
+  .feature-link { font-size: 0.85rem; color: #0ea5e9; font-weight: 600; }
+
+  .disclaimer-section { padding: 3rem 1.5rem; background: var(--color-bg); }
+  .disclaimer-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+  .disclaimer-inner p { font-size: 0.8rem; color: var(--color-sub); line-height: 1.9; }
+  .last-updated { margin-top: 1.5rem; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 8rem 1.5rem 4rem; }
+    .hero-title { font-size: 1.9rem; }
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_CONFIG } from '../config';
+
+const spots = [
+  {
+    name: '東武動物公園',
+    badge: '人気',
+    desc: '動物園・遊園地・プールが一体になった大型レジャー施設。杉戸町からアクセスがよく、子連れファミリーに大人気のお出かけ先です。',
+  },
+  {
+    name: '杉戸町子育て支援センター',
+    desc: '未就学児が遊べるスペースや、育児相談ができる施設。同じ年ごろのお子さまを持つ家庭の交流の場としても利用されています。',
+  },
+  {
+    name: '杉戸町立図書館',
+    desc: '絵本コーナーが充実し、読み聞かせイベントも開催。雨の日や暑い日でもゆっくり過ごせる、家族で楽しめる場所です。',
+  },
+  {
+    name: '近隣の大型商業施設',
+    desc: '雨の日のお出かけ先としても便利。買い物のついでに、屋内で快適に過ごせるスポットがそろっています。',
+  },
+];
+---
+<Layout title="子連れスポット" description="杉戸町と周辺の子連れにおすすめのお出かけスポット。東武動物公園、子育て支援センター、図書館など、ファミリーで楽しめる場所を紹介します。">
+
+  <section class="page-header">
+    <div class="page-header-inner">
+      <p class="page-tag">FAMILY</p>
+      <h1>子連れスポット</h1>
+      <p class="page-lead">お子さま連れでも安心して楽しめる、杉戸町とその周辺のスポットをまとめました。</p>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="cards">
+      {spots.map(s => (
+        <article class="card">
+          <h2>
+            {s.name}
+            {s.badge && <span class="badge">{s.badge}</span>}
+          </h2>
+          <p>{s.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="note">
+      <p>東武動物公園は宮代町に所在しますが、杉戸町からのアクセスが良いため掲載しています。</p>
+      <p>施設の開館状況やイベント内容は変わることがあります。お出かけ前に各施設の最新情報をご確認ください。</p>
+    </div>
+
+    <p class="last-updated">最終更新: {SITE_CONFIG.lastUpdated}</p>
+  </section>
+
+  <section class="map-section">
+    <div class="map-inner">
+      <h2>子連れスポット周辺マップ</h2>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps?q=東武動物公園&output=embed" width="100%" height="350" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" title="地図"></iframe>
+      </div>
+      <p class="map-note">※ マップ上の表示は目安です。正確な場所は各施設の公式サイトをご確認ください。</p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding: 9rem 1.5rem 3.5rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
+    color: white; text-align: center;
+  }
+  .page-header-inner { max-width: 720px; margin: 0 auto; }
+  .page-tag { font-size: 0.75rem; letter-spacing: 0.25em; opacity: 0.8; margin-bottom: 0.8rem; }
+  .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+  .page-lead { font-size: 0.92rem; line-height: 1.9; opacity: 0.9; }
+
+  .content { padding: 4rem 1.5rem 5rem; background: var(--color-bg); }
+  .cards {
+    max-width: 880px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+  }
+  .card {
+    padding: 2rem 1.8rem; background: #ffffff; border: 1px solid #cfe8f7;
+    border-left: 4px solid #0ea5e9;
+  }
+  .card h2 {
+    font-size: 1.15rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.7rem;
+    display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.68rem; font-weight: 600; color: #ffffff; background: #0ea5e9;
+    padding: 0.15rem 0.6rem; border-radius: 999px; letter-spacing: 0.05em;
+  }
+  .card p { font-size: 0.9rem; color: var(--color-sub); line-height: 1.85; }
+
+  .note {
+    max-width: 880px; margin: 2.5rem auto 0; padding: 1.2rem 1.5rem;
+    background: #f0f9ff; border: 1px dashed #7cc6ec;
+  }
+  .note p { font-size: 0.82rem; color: #1e3a5f; line-height: 1.8; }
+  .note p + p { margin-top: 0.5rem; }
+
+  .last-updated { text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-sub); }
+
+  .map-section { padding: 3rem 1.5rem; background: var(--color-bg); }
+  .map-inner { max-width: 800px; margin: 0 auto; }
+  .map-inner h2 { font-size: 1.2rem; font-weight: 700; color: #1e3a5f; margin-bottom: 1.5rem; }
+  .map-container { margin-bottom: 1rem; }
+  .map-note { font-size: 0.8rem; color: var(--color-sub); }
+</style>

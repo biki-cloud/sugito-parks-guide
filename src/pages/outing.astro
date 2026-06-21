@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_CONFIG } from '../config';
+
+const seasons = [
+  { season: '春', emoji: '🌸', title: '桜・古利根川沿い', desc: '古利根川沿いの遊歩道は桜の名所。お花見やのんびりした散歩にぴったりの季節です。' },
+  { season: '夏', emoji: '🌊', title: 'プール・水遊び', desc: '東武動物公園のプールなど、近隣で水遊びを楽しめるスポットへ。暑い日のお出かけに。' },
+  { season: '秋', emoji: '🍁', title: '紅葉・散歩', desc: '気候のよい秋は公園や遊歩道での散歩が気持ちのいい季節。紅葉も楽しめます。' },
+  { season: '冬', emoji: '✨', title: '近隣の温泉・イルミネーション', desc: '寒い時期は近隣の温泉でゆったり。イルミネーションスポットへのお出かけもおすすめです。' },
+];
+
+const nearby = [
+  { name: '権現堂桜堤（幸手市）', desc: '関東有数の桜の名所。春は桜と菜の花の競演が見事で、杉戸町から車でアクセスしやすいスポットです。' },
+  { name: '久喜市方面', desc: '商業施設やレジャー施設が多く、買い物やお出かけに便利。週末のおでかけ先として人気です。' },
+  { name: '春日部市方面', desc: '大型ショッピング施設が充実。雨の日や一日かけてのお出かけにも対応できるエリアです。' },
+];
+---
+<Layout title="お出かけガイド" description="杉戸町のお出かけガイド。季節別のおすすめスポットや、権現堂桜堤など近隣の行きやすい場所、移動手段のヒントをまとめました。">
+
+  <section class="page-header">
+    <div class="page-header-inner">
+      <p class="page-tag">OUTING</p>
+      <h1>お出かけガイド</h1>
+      <p class="page-lead">季節ごとのおすすめや、杉戸町から行きやすい近隣スポットをまとめました。</p>
+    </div>
+  </section>
+
+  <section class="content">
+    <h2 class="section-heading">季節別のおすすめ</h2>
+    <div class="season-grid">
+      {seasons.map(s => (
+        <article class="season-card">
+          <div class="season-emoji">{s.emoji}</div>
+          <p class="season-label">{s.season}</p>
+          <h3>{s.title}</h3>
+          <p class="season-desc">{s.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    <h2 class="section-heading">杉戸町から行きやすい近隣スポット</h2>
+    <div class="cards">
+      {nearby.map(n => (
+        <article class="card">
+          <h3>{n.name}</h3>
+          <p>{n.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    <h2 class="section-heading">移動手段のヒント</h2>
+    <div class="tips">
+      <ul>
+        <li><strong>車が便利：</strong>近隣スポットへのお出かけは車が便利。駐車場の有無は事前に確認しておくと安心です。</li>
+        <li><strong>東武線沿線：</strong>東武日光線・伊勢崎線（スカイツリーライン）沿線なら電車でのお出かけもしやすいエリアです。</li>
+        <li><strong>自転車で回れるエリア：</strong>町内の公園や遊歩道は、自転車でのんびり回るのもおすすめです。</li>
+      </ul>
+    </div>
+
+    <div class="note">
+      <p>施設の営業状況やイベント内容は変わることがあります。お出かけ前に各施設の最新情報をご確認ください。</p>
+    </div>
+
+    <p class="last-updated">最終更新: {SITE_CONFIG.lastUpdated}</p>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding: 9rem 1.5rem 3.5rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
+    color: white; text-align: center;
+  }
+  .page-header-inner { max-width: 720px; margin: 0 auto; }
+  .page-tag { font-size: 0.75rem; letter-spacing: 0.25em; opacity: 0.8; margin-bottom: 0.8rem; }
+  .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+  .page-lead { font-size: 0.92rem; line-height: 1.9; opacity: 0.9; }
+
+  .content { padding: 4rem 1.5rem 5rem; background: var(--color-bg); max-width: 880px; margin: 0 auto; }
+  .section-heading {
+    font-size: 1.3rem; font-weight: 700; color: #1e3a5f; margin: 0 0 1.5rem;
+    padding-bottom: 0.6rem; border-bottom: 2px solid #0ea5e9;
+  }
+  .section-heading:not(:first-child) { margin-top: 3.5rem; }
+
+  .season-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.2rem;
+  }
+  .season-card {
+    padding: 1.8rem 1.4rem; background: #ffffff; border: 1px solid #cfe8f7; text-align: center;
+  }
+  .season-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+  .season-label { font-size: 0.8rem; font-weight: 600; color: #0ea5e9; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .season-card h3 { font-size: 1rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.6rem; }
+  .season-desc { font-size: 0.85rem; color: var(--color-sub); line-height: 1.8; }
+
+  .cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+  }
+  .card {
+    padding: 1.8rem; background: #ffffff; border: 1px solid #cfe8f7; border-left: 4px solid #0ea5e9;
+  }
+  .card h3 { font-size: 1.1rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.6rem; }
+  .card p { font-size: 0.88rem; color: var(--color-sub); line-height: 1.85; }
+
+  .tips { background: #ffffff; border: 1px solid #cfe8f7; padding: 1.8rem 2rem; }
+  .tips ul { list-style: none; padding: 0; margin: 0; }
+  .tips li { font-size: 0.9rem; color: var(--color-sub); line-height: 1.9; padding-left: 1.2rem; position: relative; }
+  .tips li::before { content: '▸'; color: #0ea5e9; position: absolute; left: 0; }
+  .tips li + li { margin-top: 0.8rem; }
+  .tips strong { color: #1e3a5f; }
+
+  .note {
+    margin: 2.5rem 0 0; padding: 1.2rem 1.5rem; background: #f0f9ff; border: 1px dashed #7cc6ec;
+  }
+  .note p { font-size: 0.82rem; color: #1e3a5f; line-height: 1.8; }
+
+  .last-updated { text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-sub); }
+</style>

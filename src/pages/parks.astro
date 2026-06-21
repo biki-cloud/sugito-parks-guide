@@ -1,0 +1,103 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE_CONFIG } from '../config';
+
+const parks = [
+  {
+    name: '杉戸町みどり公園',
+    desc: '広い芝生広場と遊具がそろう、町を代表する公園。ウォーキングコースもあり、散歩やピクニックにぴったりです。',
+  },
+  {
+    name: '大塚公園',
+    desc: '住宅地のなかにある身近な公園。ブランコやすべり台などの遊具があり、小さなお子さまの遊び場として人気です。',
+  },
+  {
+    name: '堤根公園',
+    desc: '自然豊かでのびのびと過ごせる公園。緑に囲まれた環境で、ゆったりとした時間を過ごせます。',
+  },
+  {
+    name: '古利根川沿いの遊歩道',
+    desc: '川沿いに整備された遊歩道。散歩やジョギングに最適で、春は桜並木も楽しめます。',
+  },
+  {
+    name: '各地区の小規模公園',
+    desc: '町内の各地区には、地域に根ざした小さな公園が点在しています。お住まいの近くの遊び場としてご活用ください。',
+  },
+];
+---
+<Layout title="公園一覧" description="杉戸町の公園・遊歩道をまとめました。みどり公園や大塚公園、古利根川沿いの遊歩道など、家族で楽しめるスポットを紹介します。">
+
+  <section class="page-header">
+    <div class="page-header-inner">
+      <p class="page-tag">PARKS</p>
+      <h1>公園一覧</h1>
+      <p class="page-lead">杉戸町には、広い芝生広場のある公園から身近な遊び場まで、さまざまな公園があります。</p>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="cards">
+      {parks.map(p => (
+        <article class="card">
+          <h2>{p.name}</h2>
+          <p>{p.desc}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="note">
+      <p>遊具の種類や状態は変わることがあります。最新情報は杉戸町公式サイトをご確認ください。</p>
+    </div>
+
+    <p class="last-updated">最終更新: {SITE_CONFIG.lastUpdated}</p>
+  </section>
+
+  <section class="map-section">
+    <div class="map-inner">
+      <h2>杉戸町の公園マップ</h2>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps?q=杉戸町+公園&output=embed" width="100%" height="350" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" title="地図"></iframe>
+      </div>
+      <p class="map-note">※ マップ上の表示は目安です。正確な場所は各施設の公式サイトをご確認ください。</p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .page-header {
+    padding: 9rem 1.5rem 3.5rem;
+    background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
+    color: white; text-align: center;
+  }
+  .page-header-inner { max-width: 720px; margin: 0 auto; }
+  .page-tag { font-size: 0.75rem; letter-spacing: 0.25em; opacity: 0.8; margin-bottom: 0.8rem; }
+  .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+  .page-lead { font-size: 0.92rem; line-height: 1.9; opacity: 0.9; }
+
+  .content { padding: 4rem 1.5rem 5rem; background: var(--color-bg); }
+  .cards {
+    max-width: 880px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+  }
+  .card {
+    padding: 2rem 1.8rem; background: #ffffff; border: 1px solid #cfe8f7;
+    border-left: 4px solid #0ea5e9;
+  }
+  .card h2 { font-size: 1.15rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.7rem; }
+  .card p { font-size: 0.9rem; color: var(--color-sub); line-height: 1.85; }
+
+  .note {
+    max-width: 880px; margin: 2.5rem auto 0; padding: 1.2rem 1.5rem;
+    background: #f0f9ff; border: 1px dashed #7cc6ec;
+  }
+  .note p { font-size: 0.82rem; color: #1e3a5f; line-height: 1.8; }
+
+  .last-updated { text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-sub); }
+
+  .map-section { padding: 3rem 1.5rem; background: var(--color-bg); }
+  .map-inner { max-width: 800px; margin: 0 auto; }
+  .map-inner h2 { font-size: 1.2rem; font-weight: 700; color: #1e3a5f; margin-bottom: 1.5rem; }
+  .map-container { margin-bottom: 1rem; }
+  .map-note { font-size: 0.8rem; color: var(--color-sub); }
+</style>
