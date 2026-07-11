@@ -15,7 +15,7 @@ const nearby = [
   { name: '春日部市方面', desc: '大型ショッピング施設が充実。雨の日や一日かけてのお出かけにも対応できるエリアです。' },
 ];
 ---
-<Layout title="お出かけガイド" description="杉戸町のお出かけガイド。季節別のおすすめスポットや、権現堂桜堤など近隣の行きやすい場所、移動手段のヒントをまとめました。">
+<Layout title="お出かけガイド" breadcrumb="お出かけガイド" description="杉戸町のお出かけガイド。季節別のおすすめスポットや、権現堂桜堤など近隣の行きやすい場所、移動手段のヒントをまとめました。">
 
   <section class="page-header">
     <div class="page-header-inner">
@@ -68,7 +68,7 @@ const nearby = [
 
 <style>
   .page-header {
-    padding: 9rem 1.5rem 3.5rem;
+    padding: 2.5rem 1.5rem 3rem;
     background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
     color: white; text-align: center;
   }
@@ -77,10 +77,10 @@ const nearby = [
   .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
   .page-lead { font-size: 0.92rem; line-height: 1.9; opacity: 0.9; }
 
-  .content { padding: 4rem 1.5rem 5rem; background: var(--color-bg); max-width: 880px; margin: 0 auto; }
+  .content { padding: 3.5rem 1.5rem 4.5rem; background: var(--color-bg); max-width: 880px; margin: 0 auto; }
   .section-heading {
-    font-size: 1.3rem; font-weight: 700; color: #1e3a5f; margin: 0 0 1.5rem;
-    padding-bottom: 0.6rem; border-bottom: 2px solid #0ea5e9;
+    font-size: 1.3rem; font-weight: 700; color: var(--color-accent); margin: 0 0 1.5rem;
+    padding-bottom: 0.6rem; border-bottom: 2px solid var(--color-warm); display: inline-block;
   }
   .section-heading:not(:first-child) { margin-top: 3.5rem; }
 
@@ -88,33 +88,49 @@ const nearby = [
     display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.2rem;
   }
   .season-card {
-    padding: 1.8rem 1.4rem; background: #ffffff; border: 1px solid #cfe8f7; text-align: center;
+    padding: 1.8rem 1.4rem; background: var(--color-surface); border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-warm); border-radius: 12px; text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
+  .season-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(14,165,233,0.18); }
   .season-emoji { font-size: 2rem; margin-bottom: 0.5rem; }
-  .season-label { font-size: 0.8rem; font-weight: 600; color: #0ea5e9; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
-  .season-card h3 { font-size: 1rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.6rem; }
+  .season-label { font-size: 0.8rem; font-weight: 600; color: var(--color-warm); letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .season-card h3 { font-size: 1rem; font-weight: 700; color: var(--color-accent); margin-bottom: 0.6rem; }
   .season-desc { font-size: 0.85rem; color: var(--color-sub); line-height: 1.8; }
 
   .cards {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
   }
   .card {
-    padding: 1.8rem; background: #ffffff; border: 1px solid #cfe8f7; border-left: 4px solid #0ea5e9;
+    padding: 1.75rem; background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .card h3 { font-size: 1.1rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.6rem; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(14,165,233,0.18); }
+  .card h3 {
+    font-size: 1.1rem; font-weight: 700; color: var(--color-accent); margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .card h3::before {
+    content: ''; flex-shrink: 0; width: 8px; height: 8px; border-radius: 999px; background: var(--color-warm);
+  }
   .card p { font-size: 0.88rem; color: var(--color-sub); line-height: 1.85; }
 
-  .tips { background: #ffffff; border: 1px solid #cfe8f7; padding: 1.8rem 2rem; }
+  .tips {
+    background: var(--color-surface); border: 1px solid var(--color-border);
+    border-radius: 12px; padding: 1.8rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
   .tips ul { list-style: none; padding: 0; margin: 0; }
   .tips li { font-size: 0.9rem; color: var(--color-sub); line-height: 1.9; padding-left: 1.2rem; position: relative; }
-  .tips li::before { content: '▸'; color: #0ea5e9; position: absolute; left: 0; }
+  .tips li::before { content: '▸'; color: var(--color-warm); position: absolute; left: 0; }
   .tips li + li { margin-top: 0.8rem; }
-  .tips strong { color: #1e3a5f; }
+  .tips strong { color: var(--color-accent); }
 
   .note {
-    margin: 2.5rem 0 0; padding: 1.2rem 1.5rem; background: #f0f9ff; border: 1px dashed #7cc6ec;
+    margin: 2.5rem 0 0; padding: 1.2rem 1.5rem; border-radius: 10px;
+    background: var(--color-accent-light); border: 1px solid var(--color-border);
   }
-  .note p { font-size: 0.82rem; color: #1e3a5f; line-height: 1.8; }
+  .note p { font-size: 0.82rem; color: var(--color-accent); line-height: 1.8; }
 
   .last-updated { text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-sub); }
 </style>

@@ -7,22 +7,26 @@ const spots = [
     name: '東武動物公園',
     badge: '人気',
     desc: '動物園・遊園地・プールが一体になった大型レジャー施設。杉戸町からアクセスがよく、子連れファミリーに大人気のお出かけ先です。',
+    map: '東武動物公園',
   },
   {
     name: '杉戸町子育て支援センター',
     desc: '未就学児が遊べるスペースや、育児相談ができる施設。同じ年ごろのお子さまを持つ家庭の交流の場としても利用されています。',
+    map: '杉戸町子育て支援センター',
   },
   {
     name: '杉戸町立図書館',
     desc: '絵本コーナーが充実し、読み聞かせイベントも開催。雨の日や暑い日でもゆっくり過ごせる、家族で楽しめる場所です。',
+    map: '杉戸町立図書館',
   },
   {
     name: '近隣の大型商業施設',
     desc: '雨の日のお出かけ先としても便利。買い物のついでに、屋内で快適に過ごせるスポットがそろっています。',
+    map: null,
   },
 ];
 ---
-<Layout title="子連れスポット" description="杉戸町と周辺の子連れにおすすめのお出かけスポット。東武動物公園、子育て支援センター、図書館など、ファミリーで楽しめる場所を紹介します。">
+<Layout title="子連れスポット" breadcrumb="子連れスポット" description="杉戸町と周辺の子連れにおすすめのお出かけスポット。東武動物公園、子育て支援センター、図書館など、ファミリーで楽しめる場所を紹介します。">
 
   <section class="page-header">
     <div class="page-header-inner">
@@ -36,11 +40,22 @@ const spots = [
     <div class="cards">
       {spots.map(s => (
         <article class="card">
-          <h2>
-            {s.name}
-            {s.badge && <span class="badge">{s.badge}</span>}
-          </h2>
-          <p>{s.desc}</p>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="7" r="2"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/><path d="M17 14a3 3 0 013 3v4"/></svg>
+          </div>
+          <div class="card-body">
+            <h2>
+              {s.name}
+              {s.badge && <span class="badge">{s.badge}</span>}
+            </h2>
+            <p>{s.desc}</p>
+            {s.map && (
+              <a class="map-link" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(s.map)}`} target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Googleマップで見る
+              </a>
+            )}
+          </div>
         </article>
       ))}
     </div>
@@ -67,7 +82,7 @@ const spots = [
 
 <style>
   .page-header {
-    padding: 9rem 1.5rem 3.5rem;
+    padding: 2.5rem 1.5rem 3rem;
     background: linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%);
     color: white; text-align: center;
   }
@@ -76,37 +91,53 @@ const spots = [
   .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
   .page-lead { font-size: 0.92rem; line-height: 1.9; opacity: 0.9; }
 
-  .content { padding: 4rem 1.5rem 5rem; background: var(--color-bg); }
+  .content { padding: 3.5rem 1.5rem 4.5rem; background: var(--color-bg); }
   .cards {
     max-width: 880px; margin: 0 auto;
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
   }
   .card {
-    padding: 2rem 1.8rem; background: #ffffff; border: 1px solid #cfe8f7;
-    border-left: 4px solid #0ea5e9;
+    display: flex; gap: 1.1rem; padding: 1.75rem; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(14,165,233,0.18); }
+  .card-icon {
+    flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 11px;
+    background: var(--color-accent-light); color: var(--color-warm);
+  }
+  .card-icon svg { width: 24px; height: 24px; }
+  .card-body { flex: 1; }
   .card h2 {
-    font-size: 1.15rem; font-weight: 600; color: #1e3a5f; margin-bottom: 0.7rem;
+    font-size: 1.15rem; font-weight: 700; color: var(--color-accent); margin-bottom: 0.6rem;
     display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
   }
   .badge {
-    font-size: 0.68rem; font-weight: 600; color: #ffffff; background: #0ea5e9;
+    font-size: 0.68rem; font-weight: 600; color: #ffffff; background: var(--color-warm);
     padding: 0.15rem 0.6rem; border-radius: 999px; letter-spacing: 0.05em;
   }
   .card p { font-size: 0.9rem; color: var(--color-sub); line-height: 1.85; }
+  .map-link {
+    display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.9rem;
+    font-size: 0.82rem; font-weight: 600; color: var(--color-warm); text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .map-link svg { width: 15px; height: 15px; }
+  .map-link:hover { color: var(--color-accent-md); text-decoration: underline; }
 
   .note {
-    max-width: 880px; margin: 2.5rem auto 0; padding: 1.2rem 1.5rem;
-    background: #f0f9ff; border: 1px dashed #7cc6ec;
+    max-width: 880px; margin: 2.5rem auto 0; padding: 1.2rem 1.5rem; border-radius: 10px;
+    background: var(--color-accent-light); border: 1px solid var(--color-border);
   }
-  .note p { font-size: 0.82rem; color: #1e3a5f; line-height: 1.8; }
+  .note p { font-size: 0.82rem; color: var(--color-accent); line-height: 1.8; }
   .note p + p { margin-top: 0.5rem; }
 
   .last-updated { text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--color-sub); }
 
   .map-section { padding: 3rem 1.5rem; background: var(--color-bg); }
   .map-inner { max-width: 800px; margin: 0 auto; }
-  .map-inner h2 { font-size: 1.2rem; font-weight: 700; color: #1e3a5f; margin-bottom: 1.5rem; }
-  .map-container { margin-bottom: 1rem; }
+  .map-inner h2 { font-size: 1.2rem; font-weight: 700; color: var(--color-accent); margin-bottom: 1.5rem; }
+  .map-container { margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border-radius: 8px; overflow: hidden; }
   .map-note { font-size: 0.8rem; color: var(--color-sub); }
 </style>

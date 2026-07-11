@@ -3,17 +3,17 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --color-bg:           #f5f2ed;
+  --color-bg:           #f0f9ff;
   --color-surface:      #ffffff;
-  --color-border:       #ddd9d2;
-  --color-text:         #2c2a26;
-  --color-sub:          #7a7770;
-  --color-accent:       #2d4a3e;
-  --color-accent-md:    #3d6b59;
-  --color-accent-light: #e6ede9;
-  --color-warm:         #b8935a;
-  --color-warm-lt:      #f5efe6;
-  --color-dark:         #1c1a17;
+  --color-border:       #bae6fd;
+  --color-text:         #1c1917;
+  --color-sub:          #6b7280;
+  --color-accent:       #1e3a5f;
+  --color-accent-md:    #1d4ed8;
+  --color-accent-light: #eff6ff;
+  --color-warm:         #0ea5e9;
+  --color-warm-lt:      #f0f9ff;
+  --color-dark:         #1c1917;
 }
 
 html { scroll-behavior: smooth; }
@@ -41,6 +41,7 @@ body {
   background-color: var(--color-accent);
 }
 .section-title-center::after { left: 50%; transform: translateX(-50%); }
+.section-title::after { background-color: var(--color-warm); }
 
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
